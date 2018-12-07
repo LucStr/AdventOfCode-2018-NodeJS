@@ -1,12 +1,5 @@
 var data = require('./data')(7)
 
-data = `Step C must be finished before step A can begin.
-Step A must be finished before step B can begin.
-Step A must be finished before step D can begin.
-Step B must be finished before step E can begin.
-Step D must be finished before step E can begin.
-Step F must be finished before step E can begin.`
-
 data = data.split('\n').map(a => a.match(/ [A-Z] /g).map(a => a.trim()));
 let counts = [];
 [].concat(...data).filter((e, i, a) => i == a.indexOf(e)).forEach((e, i, a) => {
@@ -17,18 +10,16 @@ let counts = [];
 });
 
 var result = '';
-while(counts.length){
+found = false;
+while(counts.filter(a => a).length){
     var next = counts
         .filter(a => !a.r().length)
         .sort((a, b) => b.c > a.c ? -1 : 1)[0];
-    console.log(next)
     delete counts[counts.indexOf(next)]
-    result += next;
-    console.log(data.filter(a => a).length)
+    result += next.c;
     data.filter(a => a[0] == next.c).forEach(a => {
         delete data[data.indexOf(a)]
     });
-    console.log(data.filter(a => a).length)
 }
 console.log(result)
 
