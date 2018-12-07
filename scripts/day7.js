@@ -3,7 +3,7 @@ var data = require('./data')(7)
 function part1(data){
     data = data.split('\n').map(a => a.match(/ [A-Z] /g).map(a => a.trim()));
     let counts = [];
-    [].concat(...data).filter((e, i, a) => i == a.indexOf(e)).forEach((e, i, a) => {
+    [].concat(...data).filter((e, i, a) => i == a.indexOf(e)).forEach(e => {
         counts.push({
             c: e,
             r: () => data.filter(b => b[1] == e)
@@ -29,7 +29,7 @@ console.log(part1(data));
 function part2(data, workers){
     data = data.split('\n').map(a => a.match(/ [A-Z] /g).map(a => a.trim()));
     let counts = [];
-    [].concat(...data).filter((e, i, a) => i == a.indexOf(e)).forEach((e, i, a) => {
+    [].concat(...data).filter((e, i, a) => i == a.indexOf(e)).forEach(e => {
         counts.push({
             c: e,
             r: () => data.filter(b => b[1] == e),
@@ -41,7 +41,6 @@ function part2(data, workers){
     var result = '';
     var desired = counts.length;
     while(result.length != desired){
-        console.log(stash.map(a => a.c))
         count++;
         let newStash = [];
         stash.forEach(e => {
@@ -69,7 +68,7 @@ function part2(data, workers){
             });
         })
     }
-    return count ;
+    return count;
 }
 
 console.log(part2(data, 5))
