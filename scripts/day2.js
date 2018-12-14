@@ -1,4 +1,4 @@
-var data = require('./data')(2);
+var data = require('./data')(2).split('\n');
 
 var count = [];
 var charCount = data.map(a => {

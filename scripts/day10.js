@@ -1,7 +1,7 @@
 const data = require('./data')(10);
 
 var coords = data.split('\n').map(a => {
-   var match = a.match(/\<(.+?)>/g).map(a => a.split('<')[1].split('>')[0].split(', ').map(a => Number(a))).flat()
+   var match = a.match(/-?\d+/g).map(a => Number(a))
    return {
        x: match[0],
        y: match[1],
